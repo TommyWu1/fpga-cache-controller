@@ -66,11 +66,11 @@ run_tb() {
   # shellcheck disable=SC2086
   if [ "$unit" = tb_demo ] && [ "${WAVE:-0}" = 1 ]; then
     # shellcheck disable=SC2086
-    if ! "$GHDL" -r --std=93 $flags $generics --workdir="$BUILD" "$unit" --assert-level=error --stop-time="$stop" --wave="$BUILD/$name.ghw" >"$log" 2>&1; then
+    if ! "$GHDL" -r --std=93 $flags --workdir="$BUILD" "$unit" $generics --assert-level=error --stop-time="$stop" --wave="$BUILD/$name.ghw" >"$log" 2>&1; then
       cat "$log"
       exit 1
     fi
-  elif ! "$GHDL" -r --std=93 $flags $generics --workdir="$BUILD" "$unit" --assert-level=error --stop-time="$stop" >"$log" 2>&1; then
+  elif ! "$GHDL" -r --std=93 $flags --workdir="$BUILD" "$unit" $generics --assert-level=error --stop-time="$stop" >"$log" 2>&1; then
     cat "$log"
     exit 1
   fi

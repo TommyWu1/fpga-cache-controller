@@ -107,7 +107,8 @@ begin
     end if;
     assert saw_offset_31 = '1'
       report "terminal offset 31 was not observed" severity failure;
-    report "demo metrics: lookup=" & integer'image(to_integer(unsigned(lookup_cycles))) &
+    report "demo metrics: extended=" & boolean'image(EXTENDED_DEMO) &
+      " lookup=" & integer'image(to_integer(unsigned(lookup_cycles))) &
       " ram=" & integer'image(to_integer(unsigned(ram_access_cycles))) &
       " replacement=" & integer'image(to_integer(unsigned(replacement_cycles))) &
       " read-hit=" & integer'image(to_integer(unsigned(read_hit_cycles))) &

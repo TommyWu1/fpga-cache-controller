@@ -313,7 +313,7 @@ begin
         integer'image(lookup_events) & "/" & integer'image(done_events) severity error;
     assert mem_error = '0' report "main-memory protocol monitor reported an error" severity error;
     assert pulse_events = reads + writes report "strobe event count disagrees with memory model" severity error;
-    report "PASS tb_cache: " & integer'image(accept_events) & " transactions, " &
+    report "PASS tb_cache: registered-memory=" & boolean'image(REGISTERED_MEMORY) & "; " & integer'image(accept_events) & " transactions, " &
       integer'image(reads) & " memory reads, " & integer'image(writes) & " writes" severity note;
     wait;
   end process;
