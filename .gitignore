@@ -8,6 +8,7 @@ ip/generated/
 build/
 output/
 *.cf
+*.o
 *.vcd
 *.ghw
 *.wdb
