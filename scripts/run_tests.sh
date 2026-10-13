@@ -66,7 +66,7 @@ run_tb() {
   # shellcheck disable=SC2086
   if [ "$unit" = tb_demo ] && [ "${WAVE:-0}" = 1 ]; then
     # shellcheck disable=SC2086
-    if ! "$GHDL" -r --std=93 $flags $generics --workdir="$BUILD" "$unit" --assert-level=error --stop-time="$stop" --wave="$BUILD/tb_demo.ghw" >"$log" 2>&1; then
+    if ! "$GHDL" -r --std=93 $flags $generics --workdir="$BUILD" "$unit" --assert-level=error --stop-time="$stop" --wave="$BUILD/$name.ghw" >"$log" 2>&1; then
       cat "$log"
       exit 1
     fi
@@ -85,6 +85,7 @@ cd "$BUILD"
 
 if [ "$MODE" = demo ]; then
   run_tb tb_demo 9ms
+  run_tb tb_demo 9ms "" "-gEXTENDED_DEMO=false" tb_demo_course
   echo "PASS run_tests.sh demo"
   exit 0
 fi
@@ -103,6 +104,7 @@ fi
 
 if [ -f "$ROOT/sim/tb_demo.vhd" ]; then
   run_tb tb_demo 9ms
+  run_tb tb_demo 9ms "" "-gEXTENDED_DEMO=false" tb_demo_course
 else
   echo "SKIP tb_demo: public demo CPU testbench not present"
 fi
