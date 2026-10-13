@@ -1,0 +1,33 @@
+# Local course documents and third-party reference archives
+docs/sources/
+review/
+reference/local/
+ip/generated/
+
+# Generated simulation, synthesis, implementation, and instrumentation files
+build/
+output/
+*.cf
+*.vcd
+*.ghw
+*.wdb
+*.ngc
+*.ngd
+*.ngr
+*.ncd
+*.pcf
+*.bit
+*.bin
+*.syr
+*.twr
+*.twx
+*.xrpt
+*.jou
+*.log
+isim/
+xst/
+_xmsgs/
+.Xil/
+__pycache__/
+.DS_Store
+

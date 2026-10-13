@@ -1,0 +1,56 @@
+{
+  "review_date": "2026-10-13",
+  "archive": {
+    "name": "project1.zip",
+    "sha256": "c29d4a385c3a424b199bc76da305a04e647ab966dd51dbb106999ac154067387"
+  },
+  "archive_items": [
+    {
+      "path": "cpu.vhd",
+      "sha256": "f2c168c5e5913345931cb5ebf75a4297df3592bb6ac55e26466be4f97a828ece",
+      "decision": "Retain unchanged as local course stimulus; header credits Victor Dumitriu, Ryerson University"
+    },
+    {
+      "path": "FSM.vhd",
+      "sha256": "d0798ad0881ad475862aad716d72fabf81d5dd9d159369b0c9355cbf1b25a0a0",
+      "decision": "Replace faulty controller"
+    },
+    {
+      "path": "SDRAM_controller.vhd",
+      "sha256": "77044dd0fc27f3cee84023d50d02c3c90f0a47d1ce4e3f241c8ab51dd81e52fa",
+      "decision": "Replace memory model/backend"
+    },
+    {
+      "path": "overall.sch",
+      "sha256": "aff1da1bce12640ad35f8b823f6a7674c8adacc41b8cff729fcbef7031e97574",
+      "decision": "Reference architecture only"
+    },
+    {
+      "path": "ipcore_dir/SRAM.xco",
+      "sha256": "d61c4c076a884a3d8978c0a9c110b86c8a41f124bf5895c627c95485198097d3",
+      "decision": "Reuse geometry; regenerate IP for actual Spartan-3E"
+    }
+  ],
+  "requirement_sources": [
+    {
+      "name": "coe758-cache-project-specification.pdf",
+      "sha256": "d3721d4155f69be22b9305bf56fb60dbdd366ebd3ca5ed61332aec268a4191b0",
+      "distribution": "local reference; not committed"
+    },
+    {
+      "name": "coe758-course-outline-f2025.pdf",
+      "sha256": "94ef42052c4e8ac19e17ce88dd815df7b300880c424f48146bfba3fb4bfe2068",
+      "distribution": "local reference; not committed"
+    },
+    {
+      "name": "coe758-course-outline-f2026.html",
+      "sha256": "fbe3bd7900b6f2d7b8f60b3045e6b6843c43ddd77722387d283518638bf2aa92",
+      "distribution": "local reference; not committed"
+    },
+    {
+      "name": "coe758-project1-secondary-components.pdf",
+      "sha256": "a23d7ea9b0f8d075d132aa4a8fe811182cf2825ec70daa47bc03f2f0398fcae1",
+      "distribution": "local reference; not committed"
+    }
+  ]
+}
