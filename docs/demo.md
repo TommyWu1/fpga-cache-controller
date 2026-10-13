@@ -1,6 +1,6 @@
 # Hardware demonstration and evidence plan
 
-Status: procedure planned; no hardware demonstration has been performed.
+Status: simulation verified; hardware procedure awaits the physical board/toolchain.
 
 ## Before building a bitstream
 
@@ -43,4 +43,4 @@ Report both cycles and nanoseconds: `time_ns = cycles * 1e9 / cache_clock_hz`. E
 - Final report includes design, attribution, methodology, test results, hardware observations, utilization/timing, measurements and backend limitations.
 - Public README links the original implementation, verified results, representative exported captures and an optional demonstration video. Readiness claims match evidence; sensitive or vendor-generated artifacts remain local.
 
-The current project is planned, not demo-ready. A passing simulation alone upgrades it to simulation-verified; a fresh ISE implementation upgrades it to implementation-verified; successful board execution with these captures upgrades it to hardware/demo-verified.
+Both simulation demo modes pass. A fresh ISE implementation and successful board execution with these captures are still required for hardware demonstration readiness.

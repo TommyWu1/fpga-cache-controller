@@ -39,4 +39,4 @@ Extended tests must revisit 0x1100/0x1102 and 0x5504 after eviction to prove wri
 
 An unchanged CPU source is retained at `reference/local/course_cpu.vhd`. The reviewed SRAM configuration is retained at `reference/local/legacy_SRAM.xco`. Both are ignored by Git. Their hashes are recorded in `source-manifest.json`; this records provenance without publishing the supplied source or vendor-generated code.
 
-The public repository will contain the original corrected controller, tests, build recipes, and documentation. Original author attribution remains in any local or course submission that reuses the CPU generator. At this planning stage no corrected RTL has been implemented, and no legacy code is being claimed as original work.
+The public repository will contain the original corrected controller, tests, build recipes, and documentation. Original author attribution remains in any local or course submission that reuses the CPU generator. The corrected RTL and its independent regressions are implemented. The public demo uses a new compact sequencer with the attributed course vectors; the unchanged course generator remains a separate local compatibility test.

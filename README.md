@@ -1,38 +1,35 @@
 # FPGA Cache Controller
 
-A VHDL project for a 256-byte direct-mapped cache with write-back and write-allocate behavior, designed for a Xilinx Spartan-3E FPGA.
+A 256-byte direct-mapped cache in VHDL, with write-back and write-allocate behavior, designed for Xilinx Spartan-3E.
 
-**Status: requirements and implementation planning.** The corrected RTL, automated regression, FPGA build, and hardware measurements have not been completed. This repository records the work as it happens; it does not present the supplied legacy ZIP as original work or a passing implementation.
+**Simulation verified.** The cache regression passes 1,310 transactions with both asynchronous and one-clock registered main-memory models. The supplied course CPU's eight vectors and the public demo's eight- and sixteen-transaction modes also pass. GHDL synthesis recognizes the cache as a 256 x 8 RAM. Physical FPGA implementation and measurements are pending the board's exact part, constraints, and ISE setup.
 
-The cache accepts 16-bit byte addresses and 8-bit data. Eight cache lines each hold 32 bytes. Valid, dirty, and tag metadata determine whether to service a request locally, refill a line, or write a dirty victim back before refilling.
+## Run
 
-```mermaid
-flowchart LR
-    CPU[CPU request generator] --> C[Cache controller]
-    C --> RAM[256 x 8 synchronous BlockRAM]
-    RAM --> C
-    C <--> MEM[Main-memory controller or demo emulator]
-    C --> DBG[ChipScope ILA and timing monitor]
-    VIO[ChipScope VIO] --> CPU
+Install [GHDL](https://github.com/ghdl/ghdl/releases), then run:
+
+```sh
+make test
+make demo
 ```
 
-## Project documents
+`make demo` runs both demonstration modes and saves waveforms at `build/ghdl/demo/tb_demo.ghw` (extended) and `build/ghdl/demo/tb_demo_course.ghw` (eight vectors). Set `GHDL=/path/to/ghdl` if it is not on your PATH. The runner also finds the locally downloaded simulator under `build/tools/ghdl/`.
 
-- [Requirements and acceptance criteria](docs/requirements.md)
-- [Legacy ZIP reuse and attribution](docs/reuse.md)
-- [Hardware demonstration and evidence checklist](docs/demo.md)
-- [Source inventory](docs/source-manifest.json)
+The optional unchanged course CPU source is kept at `reference/local/course_cpu.vhd`; its test is explicitly skipped if that local file is absent. The public demo and main regression run without it.
 
-## Planned verification
+## Design
 
-The implementation will use portable, synthesizable VHDL-93 for the controller, a self-checking simulation environment with full 16-bit main-memory addressing, and a separate Spartan-3E integration using the course CPU generator and ChipScope. Simulation checks will include all four behavioral cases, every byte offset and cache index, dirty eviction recovery, high-address independence, and CPU/memory protocol timing.
+CPU addresses are 16 bits: 8-bit tag, 3-bit index and 5-bit byte offset. Eight cache lines each hold 32 bytes. The controller captures each CPU request once, handles hits locally, writes dirty victims to their stored-tag addresses, refills all 32 bytes, then completes the saved request.
 
-Hardware emulation will use an explicitly documented set of full-address demo memory blocks if a supplied main-memory controller is unavailable. That bounded emulator will not be described as a full SDRAM implementation.
+- [Architecture and interfaces](docs/architecture.md)
+- [Requirements](docs/requirements.md)
+- [Verification results](docs/results.md)
+- [Hardware setup](docs/hardware.md)
+- [Demonstration procedure](docs/demo.md)
+- [Reference reuse and attribution](docs/reuse.md)
 
-## Hardware status
-
-The user has confirmed the Spartan-3E FPGA family. The exact board model, FPGA part/package/speed grade, oscillator frequency, pin mapping, and installed ISE/ChipScope version still need to be recorded from the physical board and lab setup before hardware constraints or a bitstream can be finalized.
+The synthesizable demo uses a bounded backing memory with full-address decoding for eight documented blocks. It is an emulation environment, not a full 64 KiB memory or a physical SDRAM controller. The independent simulation model covers all 65,536 byte addresses.
 
 ## Attribution
 
-This project is based on the COE758 cache-controller requirements. The supplied ZIP contains a course CPU transaction generator whose header credits Victor Dumitriu at Ryerson University, Xilinx-generated IP, and a legacy cache implementation. Reuse decisions are recorded in `docs/reuse.md`. Third-party source, course PDFs, and generated vendor IP remain local rather than being committed to this public repository. The corrected cache controller, tests, build recipes, and project documentation will be developed in this repository with their own commit history.
+The requirements and compatibility vectors originate from COE758. The locally retained course CPU generator credits Victor Dumitriu, Ryerson University. The corrected cache, public stimulus sequencer, tests and build files are developed here; third-party source and generated vendor IP are excluded from the public repository. Source fingerprints and reuse decisions are recorded in `docs/source-manifest.json` and `docs/reuse.md`.
