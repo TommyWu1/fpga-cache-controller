@@ -1,0 +1,6 @@
+# Copy to a local board.ucf and replace all three placeholders from the manual.
+# cache_board_top has only one physical input; reset/trigger use ChipScope VIO.
+NET "clk" LOC = "<OSCILLATOR_PIN>";
+NET "clk" IOSTANDARD = <CLOCK_IO_STANDARD>;
+NET "clk" TNM_NET = "cache_clock";
+TIMESPEC "TS_cache_clock" = PERIOD "cache_clock" <PERIOD_NS> ns HIGH 50%;

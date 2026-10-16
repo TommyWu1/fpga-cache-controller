@@ -1,0 +1,2 @@
+/Users/tommy/Documents/ChatGPT/758 term project/sim/tb_cache.vhd:316:5:@2196446ns:(report note): PASS tb_cache: registered-memory=true; 1310 transactions, 33216 memory reads, 16352 writes
+./tb_cache:info: simulation stopped by --stop-time @9ms

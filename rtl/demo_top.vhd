@@ -1,8 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Board-facing demo harness. clk/rst/trig are the only control inputs;
--- detailed outputs are intended for ChipScope/ILA probe connections.
+-- Demo subsystem. Use cache_board_top for FPGA implementation so these
+-- observation ports connect to internal ChipScope probes, not physical pins.
 entity demo_top is
   generic (
     EXTENDED_DEMO : boolean := false
@@ -56,6 +56,10 @@ end entity;
 architecture rtl of demo_top is
   signal rst_meta : std_logic := '1';
   signal rst_sync : std_logic := '1';
+  signal trig_meta : std_logic := '0';
+  signal trig_sync : std_logic := '0';
+  attribute ASYNC_REG : string;
+  attribute ASYNC_REG of rst_meta, rst_sync, trig_meta, trig_sync : signal is "TRUE";
   signal cpu_trig : std_logic := '0';
   signal trig_previous : std_logic := '0';
   signal cpu_cs_i, cpu_wr_i, cpu_rdy_i : std_logic;
@@ -79,6 +83,8 @@ begin
     if rising_edge(clk) then
       rst_meta <= rst;
       rst_sync <= rst_meta;
+      trig_meta <= trig;
+      trig_sync <= trig_meta;
     end if;
   end process;
 
@@ -91,11 +97,11 @@ begin
       if rst_sync = '1' then
         trig_previous <= '0';
       else
-        if trig = '1' and trig_previous = '0' and init_done_i = '1' and
+        if trig_sync = '1' and trig_previous = '0' and init_done_i = '1' and
            cpu_rdy_i = '1' and cpu_active_i = '0' and cpu_finished_i = '0' then
           cpu_trig <= '1';
         end if;
-        trig_previous <= trig;
+        trig_previous <= trig_sync;
       end if;
     end if;
   end process;

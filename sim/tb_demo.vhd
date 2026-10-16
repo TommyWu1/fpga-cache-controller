@@ -91,6 +91,14 @@ begin
     -- sequencer once and only once.
     wait until falling_edge(clk);
     trig <= '1';
+    -- External trigger changes must pass through synchronization before the
+    -- sequencer can assert CS. The old raw-input edge detector fails here.
+    for edge in 1 to 3 loop
+      wait until rising_edge(clk);
+      wait for 1 ns;
+      assert cpu_cs = '0'
+        report "trigger reached CPU before synchronization completed" severity failure;
+    end loop;
     wait for 80 us;
     assert demo_fault = '0' report "demo monitor raised a fault" severity failure;
     assert demo_pass = '1' report "extended demo did not pass" severity failure;

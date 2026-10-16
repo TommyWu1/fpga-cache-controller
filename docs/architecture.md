@@ -10,7 +10,8 @@ The cache contains eight direct-mapped lines of 32 one-byte words. `cpu_addr(15:
 - `demo_cpu`: public stimulus using the eight course vectors, with optional recovery checks.
 - `demo_memory`: 256-byte bounded backing store for the eight full-address blocks listed in the hardware guide.
 - `demo_monitor`: response/protocol checks, transfer counts and timing measurements.
-- `demo_top`: reset synchronization, trigger gating and demo integration. Observation outputs must connect internally to board instrumentation rather than arbitrary physical pins.
+- `demo_top`: reset/trigger synchronization, trigger gating and demo integration.
+- `cache_board_top`: clock-only FPGA top with internal ICON/ILA/VIO connections. Probe widths and core-generation settings are in `chipscope.md`.
 
 ## CPU contract
 
@@ -36,4 +37,4 @@ The default demo executes eight compatibility vectors. Extended mode executes si
 
 ## Verification boundary
 
-Portable VHDL-93 is checked with GHDL. Actual Spartan-3E BlockRAM mapping, resource fit, timing closure, pin assignments and ChipScope captures require ISE and the physical board. The synthesis recipe accepts a real part and UCF; a board wrapper must connect the observation signals to instrumentation before a usable bitstream is built.
+Portable VHDL-93 is checked with GHDL. Actual Spartan-3E BlockRAM mapping, resource fit, timing closure, pin assignments and ChipScope captures require ISE and the physical board. The synthesis recipe accepts a real part and UCF; the supplied board wrapper needs matching generated ChipScope cores and the actual board clock constraints before a usable bitstream is built.

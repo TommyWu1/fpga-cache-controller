@@ -46,6 +46,9 @@ if [ "$MODE" = demo ] || [ -f "$ROOT/sim/tb_demo.vhd" ]; then
     "$GHDL" -a --std=93 --workdir="$BUILD" "$ROOT/$source"
   done
   "$GHDL" -a --std=93 --workdir="$BUILD" "$ROOT/sim/tb_demo.vhd"
+  "$GHDL" -a --std=93 --workdir="$BUILD" "$ROOT/sim/chipscope_models.vhd"
+  "$GHDL" -a --std=93 --workdir="$BUILD" "$ROOT/rtl/cache_board_top.vhd"
+  "$GHDL" -a --std=93 --workdir="$BUILD" "$ROOT/sim/tb_board_top.vhd"
 fi
 
 if [ "$MODE" = all ]; then
@@ -86,6 +89,8 @@ cd "$BUILD"
 if [ "$MODE" = demo ]; then
   run_tb tb_demo 9ms
   run_tb tb_demo 9ms "" "-gEXTENDED_DEMO=false" tb_demo_course
+  run_tb tb_board_top 90us
+  run_tb tb_board_top 90us "" "-gEXTENDED_DEMO=true" tb_board_top_extended
   echo "PASS run_tests.sh demo"
   exit 0
 fi
@@ -105,6 +110,8 @@ fi
 if [ -f "$ROOT/sim/tb_demo.vhd" ]; then
   run_tb tb_demo 9ms
   run_tb tb_demo 9ms "" "-gEXTENDED_DEMO=false" tb_demo_course
+  run_tb tb_board_top 90us
+  run_tb tb_board_top 90us "" "-gEXTENDED_DEMO=true" tb_board_top_extended
 else
   echo "SKIP tb_demo: public demo CPU testbench not present"
 fi

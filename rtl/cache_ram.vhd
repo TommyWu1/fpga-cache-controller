@@ -15,6 +15,8 @@ end entity;
 architecture rtl of cache_ram is
   type ram_t is array (0 to 255) of std_logic_vector(7 downto 0);
   signal memory : ram_t;
+  attribute ram_style : string;
+  attribute ram_style of memory : signal is "block";
   signal data_out : std_logic_vector(7 downto 0);
 begin
   process (clk)

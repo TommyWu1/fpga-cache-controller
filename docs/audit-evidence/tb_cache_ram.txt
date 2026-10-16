@@ -1,0 +1,2 @@
+/Users/tommy/Documents/ChatGPT/758 term project/sim/tb_cache_ram.vhd:30:5:@36ns:(report note): PASS tb_cache_ram
+./tb_cache_ram:info: simulation stopped by --stop-time @900ns

@@ -1,0 +1,2 @@
+/Users/tommy/Documents/ChatGPT/758 term project/sim/tb_course_cpu.vhd:81:5:@10256ns:(report note): PASS tb_course_cpu: all eight preserved course vectors
+./tb_course_cpu:info: simulation stopped by --stop-time @9ms

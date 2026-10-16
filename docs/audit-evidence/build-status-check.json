@@ -1,0 +1,25 @@
+{
+  "note": "Plain Tcl experiment against unmodified build-script status logic. No ISE processes or FPGA build were executed. The process status is never queried.",
+  "results": [
+    {
+      "stubbed_process_run_return": "true",
+      "exit_code": 0,
+      "output": "ISE Generate Programming File result: true"
+    },
+    {
+      "stubbed_process_run_return": "false",
+      "exit_code": 0,
+      "output": "ISE Generate Programming File result: false"
+    },
+    {
+      "stubbed_process_run_return": "1",
+      "exit_code": 1,
+      "output": "ISE Generate Programming File returned status 1"
+    },
+    {
+      "stubbed_process_run_return": "0",
+      "exit_code": 0,
+      "output": "ISE Generate Programming File result: 0"
+    }
+  ]
+}

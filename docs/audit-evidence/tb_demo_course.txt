@@ -1,0 +1,2 @@
+/Users/tommy/Documents/ChatGPT/758 term project/sim/tb_demo.vhd:110:5:@82650ns:(report note): demo metrics: extended=false lookup=1 ram=1 replacement=288 read-hit=3 write-hit=2 clean-penalty=128 dirty-penalty=288
+/Users/tommy/Documents/ChatGPT/758 term project/sim/tb_demo.vhd:129:5:@82650ns:(report note): PASS tb_demo
