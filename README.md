@@ -130,6 +130,11 @@ address space.
 - [Verification results](docs/results.md)
 - [Original code audit](docs/code-audit-2026-10-15.md)
 
+## Contributors
+
+- [TommyWu1](https://github.com/TommyWu1)
+- jongkonglong2
+  
 The assignment and eight compatibility vectors come from COE758. The locally
 retained course CPU credits Victor Dumitriu, Ryerson University. See
 [reuse and attribution](docs/reuse.md) for the source history. Course reference
